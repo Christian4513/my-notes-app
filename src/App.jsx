@@ -1,13 +1,17 @@
 
+import { Routes, Route } from 'react-router-dom';
+import HomePage from './pages/HomePage';
+import NotesPage from './pages/NotesPage';
 import './App.css'
 
 function App() {
 
 
   return (
-    <>
-      <h2>My note app</h2>
-    </>
+    <Routes>
+      <Route path="/" element={<HomePage/>}/>
+      <Route path="/notes" element={<NotesPage/>}/>
+    </Routes>
   )
 }
 
