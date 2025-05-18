@@ -1,33 +1,56 @@
-import js from '@eslint/js'
-import globals from 'globals'
-import reactHooks from 'eslint-plugin-react-hooks'
-import reactRefresh from 'eslint-plugin-react-refresh'
+import { defineConfig } from 'eslint/config';
 
-export default [
-  { ignores: ['dist'] },
+import pluginReact from "eslint-plugin-react";
+import pluginImport from "eslint-plugin-import";
+import globals from "globals";
+import babelParser from "@babel/eslint-parser";
+
+export default defineConfig([
   {
-    files: ['**/*.{js,jsx}'],
+    ignores: ['eslint.config.js'], // 👈 Esto ignora este archivo
+  },
+  {
+    files: ["**/*.{js,jsx}"],
     languageOptions: {
-      ecmaVersion: 2020,
-      globals: globals.browser,
+      parser: babelParser,
       parserOptions: {
-        ecmaVersion: 'latest',
-        ecmaFeatures: { jsx: true },
-        sourceType: 'module',
+        requireConfigFile: false,
+        ecmaVersion: "latest",
+        sourceType: "module",
+        ecmaFeatures: {
+          jsx: true,
+        },
+        babelOptions: {
+          presets: ["@babel/preset-react"],
+        },
+      },
+      globals: {
+        ...globals.browser,
+        ...globals.node,
       },
     },
     plugins: {
-      'react-hooks': reactHooks,
-      'react-refresh': reactRefresh,
+      react: pluginReact,
+      import: pluginImport,
+    },
+    settings: {
+      react: {
+        version: 'detect',
+      },
+      'import/resolver': {
+        node: {
+          extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
+        },
+      },
     },
     rules: {
-      ...js.configs.recommended.rules,
-      ...reactHooks.configs.recommended.rules,
-      'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
-      'react-refresh/only-export-components': [
-        'warn',
-        { allowConstantExport: true },
-      ],
+      "react/display-name": "off",
+      "react/prop-types": "off",
+      semi: ["error", "always"],
+      "import/no-unresolved": "error",
+      "import/named": "error",
+      "import/default": "error",
+      "import/namespace": "error",
     },
   },
-]
+]);

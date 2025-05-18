@@ -18,7 +18,7 @@ function HeaderComponent() {
         </li>
       </ul>
     </header>
-  )
+  );
 }
 
-export default HeaderComponent
+export default HeaderComponent;

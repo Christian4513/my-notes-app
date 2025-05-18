@@ -1,4 +1,5 @@
-import HeaderComponent from './../components/HeaderComponent';
+import React from "react";
+import HeaderComponent from './../components/HeaderComponent.jsx';
 
 function HomePage() {
 
@@ -9,7 +10,7 @@ function HomePage() {
     <div>HomePage</div>
     </>
     
-  )
+  );
 }
 
-export default HomePage
+export default HomePage;
