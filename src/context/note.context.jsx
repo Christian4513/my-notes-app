@@ -29,8 +29,17 @@ const noteList = [
 ];
 const [notes, setNotes] = useState(noteList);
 
+    const updateNote = (updatedNote) => {
+        const updatedNotes = notes.map((note) => {
+            if(note.id !== updatedNote.id) return note
+            return updatedNote
+        });
+        setNotes(updatedNotes);
+
+    }
+
     return(
-        <NoteContext.Provider value={{notes, setNotes}}>
+        <NoteContext.Provider value={{notes, setNotes, updateNote}}>
             {props.children}
         </NoteContext.Provider>
     );

@@ -7,7 +7,7 @@ import babelParser from "@babel/eslint-parser";
 
 export default defineConfig([
   {
-    ignores: ['eslint.config.js'], // 👈 Esto ignora este archivo
+    ignores: ['eslint.config.js'], // Esto ignora este archivo
   },
   {
     files: ["**/*.{js,jsx}"],
